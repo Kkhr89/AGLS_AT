@@ -32,7 +32,7 @@ class TestsCreateUsers:
         browser.switch_to.new_window('tab')
         browser.get(link_admin)
         wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "Inbox")))
-        browser.find_element(By.CSS_SELECTOR, '.msglist-message.row.ng-scope').click()
+        browser.find_element(By.XPATH, '/html/body/div/div/div[2]/div[2]/div[1]').click()
         auth_link = browser.find_element(By.PARTIAL_LINK_TEXT, 'http://localhost:8086')
         access_link = 'http://127.0.0.1:3000/' + auth_link.text[22:]
         browser.switch_to.window(w_agiles)
@@ -57,7 +57,7 @@ class TestsCreateUsers:
         browser.switch_to.new_window('tab')
         browser.get(link_admin)
         wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "Inbox")))
-        browser.find_element(By.CSS_SELECTOR, '.msglist-message.row.ng-scope').click()
+        browser.find_element(By.XPATH, '/html/body/div/div/div[2]/div[2]/div[1]').click()
         auth_link = browser.find_element(By.PARTIAL_LINK_TEXT, 'http://localhost:8086')
         access_link = 'http://127.0.0.1:3000/' + auth_link.text[22:]
         browser.switch_to.window(w_agiles)
@@ -82,7 +82,7 @@ class TestsCreateUsers:
         browser.switch_to.new_window('tab')
         browser.get(link_admin)
         wait.until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "Inbox")))
-        browser.find_element(By.CSS_SELECTOR, '.msglist-message.row.ng-scope').click()
+        browser.find_element(By.XPATH, '/html/body/div/div/div[2]/div[2]/div[1]').click()
         auth_link = browser.find_element(By.PARTIAL_LINK_TEXT, 'http://localhost:8086')
         access_link = 'http://127.0.0.1:3000/' + auth_link.text[22:]
         browser.switch_to.window(w_agiles)

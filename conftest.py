@@ -4,6 +4,6 @@ from selenium import webdriver
 
 @pytest.fixture(scope="function")
 def browser():
-    browser = webdriver.Chrome()
+    browser = webdriver.Edge()
     yield browser
     browser.quit()
