@@ -183,4 +183,3 @@ def feedback_database_setup():
     yield connection
     # DB close
     connection.close()
-

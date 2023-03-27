@@ -5,22 +5,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from testdata import *
 from sqlalchemy import text
 
-
 @pytest.mark.clsfeedbackform
 class TestFeedbackForm:
-
-    @pytest.mark.smoke
-    def test_smoke_feedback_form_opens(self, browser, feedback):
-        # Open Feedback form (by feedback as a function arg)
-
-        # Check if opened dialog title is displayed:
-        assert browser.find_element(By.CSS_SELECTOR, '.ant-modal-root').is_displayed()
 
     @pytest.mark.smoke
     def test_smoke_feedback_empty_form_submits(self, browser, feedback, feedback_database_setup):
         wait = WebDriverWait(browser, 20)
 
         # Open Feedback form (by feedback as a function arg)
+
+        # Check if opened dialog title is displayed:
+        assert browser.find_element(By.CSS_SELECTOR, '.ant-modal-root').is_displayed()
 
         # # Click on #1 scale button:
         try:
