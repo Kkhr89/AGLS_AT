@@ -8,7 +8,7 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.edge.service import Service
 
 
-# Function to make browser types callable from terminal:
+# Method to make browser types callable from terminal:
 def pytest_addoption(parser):
     parser.addoption('--browser',
                      action='store',
@@ -16,7 +16,7 @@ def pytest_addoption(parser):
                      help='Choose browser: chrome, firefox or edge')
 
 
-# Function to initialize-maintain-quite session in browser:
+# Method to initialize-maintain-quite session in browser:
 @pytest.fixture(scope="function")
 def browser(request):
     browser_name = request.config.getoption('--browser')

@@ -1,9 +1,9 @@
-'''LOCATORS FOR PAGES'''
+"""LOCATORS FOR PAGES"""
 
 from selenium.webdriver.common.by import By
 
 
-class LoginPageLocators:
+class LoginPageLocators():
 
     BTN_FEEDBACK_SURVEY = (By.CSS_SELECTOR, 'button.uui-button-box')
     BTN_EPAM_LOGIN = (By.CSS_SELECTOR, 'button.Button__button.Button__blue.SsoAuthLinks__epamSsoButton')
@@ -21,4 +21,5 @@ class LoginPageLocators:
     TEXT_MAIN_TITLE = (By.CSS_SELECTOR, 'h2.WelcomeTitle__title')
     TEXT_SIGN_IN = (By.CSS_SELECTOR, 'h4.Subtitle__secondaryTitle')
     TEXT_DONT_HAVE_ACCOUNT = (By.CSS_SELECTOR, 'div.TextLink__container > span')
+
     PIC_EPAM_LOGO = (By.CSS_SELECTOR, 'img[alt="epam-logo"]')
