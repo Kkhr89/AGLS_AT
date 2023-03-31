@@ -14,7 +14,7 @@ user_pass_cred: 'Godfather1989!'
 neg_user_email_cred: 'last_member@mail.com'
 neg_user_pass_cred: 'Godfather1989@'
 
-# Expected text on the page
+# Expected text on the page (Login)
 exp_page_title: 'Agiles'
 exp_dont_have_account_text: "Don't have an account?"
 exp_sign_in_text: 'Sign In'
@@ -22,13 +22,17 @@ exp_main_title_text: "WELCOME TO AGILES"
 exp_pop_up_text: 'Cannot sign in: Invalid username/password supplied'
 exp_err_email_text: "Email isn't correct"
 exp_err_email_required_text: "This field is required"
+
+# Expected text on the page (Quick Access)
 exp_qa_quick_access_text: 'Quick access'
 exp_qa_notice_text: 'Notice: temporary account lifetime 72 hours'
 exp_qa_err_255_symbols: '255 symbols maximum'
 
-# Expected placeholder text in input fields
+# Expected placeholder text in input fields (Login)
 exp_email_placeholder: 'Enter Your Email'
 exp_password_placeholder: 'Enter Your Password'
+
+# Expected placeholder text in input fields (Quick Access)
 exp_qa_name_placeholder: 'Enter Your Name'
 
 # Email negative input data

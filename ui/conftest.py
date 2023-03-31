@@ -1,4 +1,5 @@
 import pytest
+import allure
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -16,7 +17,7 @@ def pytest_addoption(parser):
                      help='Choose browser: chrome, firefox or edge')
 
 
-# Method to initialize-maintain-quite session in browser:
+@allure.step('Initialize, maintain and quite session in browser')
 @pytest.fixture(scope="function")
 def browser(request):
     browser_name = request.config.getoption('--browser')
