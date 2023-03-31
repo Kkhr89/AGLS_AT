@@ -1,5 +1,45 @@
 ---
+# Test data for Login page
+
+# User login credentials
+user_1_email_cred: 'first_member@mail.com'
+user_1_name_cred: 'First'
+user_2_email_cred: 'second_member@mail.com'
+user_2_name_cred: 'Second'
+user_3_email_cred: 'third_member@mail.com'
+user_3_name_cred: 'Third'
+user_4_email_cred: 'fourth_member@mail.com'
+user_4_name_cred: 'Fourth'
+user_pass_cred: 'Godfather1989!'
+neg_user_email_cred: 'last_member@mail.com'
+neg_user_pass_cred: 'Godfather1989@'
+
+# Expected text on the page
 exp_page_title: 'Agiles'
-exp_dont_have_account: "Don't have an account?"
-exp_sign_in: 'Sign In'
-exp_main_title: "WELCOME TO AGILES"
+exp_dont_have_account_text: "Don't have an account?"
+exp_sign_in_text: 'Sign In'
+exp_main_title_text: "WELCOME TO AGILES"
+exp_pop_up_text: 'Cannot sign in: Invalid username/password supplied'
+exp_err_email_text: "Email isn't correct"
+exp_err_email_required_text: "This field is required"
+exp_qa_quick_access_text: 'Quick access'
+exp_qa_notice_text: 'Notice: temporary account lifetime 72 hours'
+exp_qa_err_255_symbols: '255 symbols maximum'
+
+# Expected placeholder text in input fields
+exp_email_placeholder: 'Enter Your Email'
+exp_password_placeholder: 'Enter Your Password'
+exp_qa_name_placeholder: 'Enter Your Name'
+
+# Email negative input data
+email_input_neg_data:
+  - 'a'
+  - 'onlyletters'
+  - 'letters+symbols+digits123'
+  - 'email@com,com'
+  - 'email.com'
+
+# Different length text / symbols
+text_254: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by the'
+text_255: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by thei'
+text_256_neg: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their'
