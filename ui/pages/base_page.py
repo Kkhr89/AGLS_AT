@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import allure
+from ui.utilities.support import *
 
 """Base Class for all pages, contains all common methods"""
 
@@ -64,10 +64,13 @@ class BasePage:
         assert self.wait.until(EC.visibility_of_element_located(locator)).is_displayed()
         assert self.wait.until(EC.element_to_be_clickable(locator)).is_enabled()
 
-    @allure.step('Assert input field is present, the placeholder is correct')
-    def assert_input_is_present_with_placeholder(self, locator: WebElement, exp_placeholder: str):
+    @allure.step('Assert input field is present, can receive text and the placeholder is correct')
+    def assert_input_is_present_receive_text_with_placeholder(self, locator: WebElement, exp_placeholder: str):
         input_field = self.wait.until(EC.visibility_of_element_located(locator))
         assert input_field.is_displayed()
+        input_field.send_keys('test')
+        assert input_field.get_attribute('value') == 'test', 'Input field cannot receive text'
+        input_field.clear()
         act_placeholder = input_field.get_attribute('placeholder')
         assert act_placeholder == exp_placeholder, f'Placeholder is "{act_placeholder}" instead of "{exp_placeholder}"'
 
@@ -88,3 +91,8 @@ class BasePage:
     @allure.step('Return text string of the element')
     def get_text(self, locator: WebElement):
         return self.wait.until(EC.visibility_of_element_located(locator)).text
+
+    @allure.step('Execute SQL query in database and receive response')
+    def assert_db_received_data(self, host_link: str, query: str, sent_data: str):
+        query_result = db_connect_execute_query_return_cell(host_link, query)
+        assert query_result == sent_data, 'Database did not received data / data received is incorrect'

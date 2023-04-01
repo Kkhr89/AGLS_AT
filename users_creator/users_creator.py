@@ -52,7 +52,8 @@ def user_creator():
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'a.TextLink__link'))).click()
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter First Name"]')))\
             .send_keys(f_name)
-        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Last Name (Optional)"]'))) \
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,
+                                                     'input[placeholder="Enter Last Name (Optional)"]'))) \
             .send_keys(l_name)
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Email"]'))) \
             .send_keys(email)

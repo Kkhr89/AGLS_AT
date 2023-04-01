@@ -1,10 +1,11 @@
 """ Login page Test suite """
 
+
 import pytest
 import allure
 from ui.pages.login_page import LoginPage
-from ui.testdata.links import link_app
-from ui.pages.locators import LoginPageLocators, QuickAccessPageLocators
+from ui.testdata.links import *
+from ui.pages.locators import *
 
 
 @allure.suite('Logging')
@@ -38,10 +39,12 @@ class TestLoginPageMain:
                                             LoginPage.login_yaml_parser('exp_dont_have_account_text'))
         page.assert_element_text_is_correct(LoginPageLocators.TEXT_MAIN_TITLE,
                                             LoginPage.login_yaml_parser('exp_main_title_text'))
-        page.assert_input_is_present_with_placeholder(LoginPageLocators.INPUT_EMAIL,
-                                                      LoginPage.login_yaml_parser('exp_email_placeholder'))
-        page.assert_input_is_present_with_placeholder(LoginPageLocators.INPUT_PASSWORD,
-                                                      LoginPage.login_yaml_parser('exp_password_placeholder'))
+        page.assert_input_is_present_receive_text_with_placeholder(LoginPageLocators.INPUT_EMAIL,
+                                                                   LoginPage
+                                                                   .login_yaml_parser('exp_email_placeholder'))
+        page.assert_input_is_present_receive_text_with_placeholder(LoginPageLocators.INPUT_PASSWORD,
+                                                                   LoginPage
+                                                                   .login_yaml_parser('exp_password_placeholder'))
         page.assert_any_element_is_present(LoginPageLocators.PIC_EPAM_LOGO)
 
     @allure.title('[Smoke]Successful logging')
@@ -64,6 +67,7 @@ class TestLoginPageMain:
         page.assert_btn_is_present_and_enabled(LoginPageLocators.BTN_SIGN_IN)
         page.do_click(LoginPageLocators.BTN_SIGN_IN)
         page.assert_any_element_is_present(LoginPageLocators.MODAL_WHATS_NEW)
+
 
     @allure.title('[Critical Path]Wrong email error pop-up check')
     @allure.severity(allure.severity_level.NORMAL)
@@ -207,7 +211,8 @@ class TestLoginPageMain:
 @pytest.mark.quick_access_suite
 class TestQuickAccessPage:
 
-    # "Quick Access" sub-page open and assert all elements
+    @allure.title('[Smoke]Page elements check')
+    @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.smoke
     @pytest.mark.positive
     def test_quick_access_open_assert_all_elements(self, browser):
@@ -215,20 +220,22 @@ class TestQuickAccessPage:
         page.go_to_url(link_app)
         page.do_click(LoginPageLocators.BTN_QUICK_ACCESS)
         page.assert_btn_is_present_and_enabled(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.assert_btn_is_present_and_enabled(QuickAccessPageLocators.BTN_QA_CANCEL)
+        page.assert_btn_is_present_and_disabled(QuickAccessPageLocators.BTN_QA_ENTER)
         page.assert_link_is_present_and_enabled(LoginPageLocators.LINK_HEADER_LOGO)
         page.assert_element_text_is_correct(LoginPageLocators.TEXT_MAIN_TITLE,
                                             LoginPage.login_yaml_parser('exp_main_title_text'))
         page.assert_element_text_is_correct(QuickAccessPageLocators.TEXT_QA_QUICK_ACCESS,
                                             LoginPage.login_yaml_parser('exp_qa_quick_access_text'))
-        page.assert_input_is_present_with_placeholder(QuickAccessPageLocators.INPUT_QA_NAME,
-                                                      LoginPage.login_yaml_parser('exp_qa_name_placeholder'))
+        page.assert_input_is_present_receive_text_with_placeholder(QuickAccessPageLocators.INPUT_QA_NAME,
+                                                                   LoginPage
+                                                                   .login_yaml_parser('exp_qa_name_placeholder'))
         page.assert_element_text_is_correct(QuickAccessPageLocators.TEXT_QA_NOTICE,
                                             LoginPage.login_yaml_parser('exp_qa_notice_text'))
-        page.assert_btn_is_present_and_enabled(QuickAccessPageLocators.BTN_QA_CANCEL)
-        page.assert_btn_is_present_and_disabled(QuickAccessPageLocators.BTN_QA_ENTER)
         page.assert_any_element_is_present(LoginPageLocators.PIC_EPAM_LOGO)
 
-    # Login through "Quick Access", standard scenario:
+    @allure.title('[Smoke]Successful logging')
+    @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.smoke
     @pytest.mark.positive
     def test_quick_access_standard_login(self, browser):
@@ -240,8 +247,9 @@ class TestQuickAccessPage:
         page.do_click(QuickAccessPageLocators.BTN_QA_ENTER)
         page.assert_any_element_is_present(LoginPageLocators.MODAL_WHATS_NEW)
 
-    # Go Back from "Quick Access" page with "Cancel" button:
-    @pytest.mark.critical_path
+    @allure.title('[Smoke]Open & Close with "Cancel" button')
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.smoke
     @pytest.mark.positive
     def test_quick_access_go_back_with_cancel(self, browser):
         page = LoginPage(browser)
@@ -250,7 +258,22 @@ class TestQuickAccessPage:
         page.do_click(QuickAccessPageLocators.BTN_QA_CANCEL)
         page.assert_btn_is_present_and_disabled(LoginPageLocators.BTN_SIGN_IN)
 
-    # "Quick Access" standard login scenario with correct credentials, paste with ctrl+v from clipboard:
+    @allure.title('[Critical Path]Error message check for "Name" field when clear with BACKSPACE')
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.critical_path
+    @pytest.mark.negative
+    def test_name_input_clear_message_check(self, browser):
+        page = LoginPage(browser)
+        page.go_to_url(link_app)
+        page.do_click(LoginPageLocators.BTN_QUICK_ACCESS)
+        page.do_input_keys_with_keyboard(QuickAccessPageLocators.INPUT_QA_NAME,
+                                         LoginPage.login_yaml_parser('user_1_name_cred'))
+        page.do_clear_input_with_backspace(QuickAccessPageLocators.INPUT_QA_NAME)
+        page.assert_element_text_is_correct(LoginPageLocators.ERR_MESSAGE_EMAIL,
+                                            LoginPage.login_yaml_parser('exp_err_email_required_text'))
+
+    @allure.title('[Extended]Logging with credentials pasting with CTRL+V')
+    @allure.severity(allure.severity_level.MINOR)
     @pytest.mark.extended
     @pytest.mark.positive
     def test_quick_access_standard_login_ctrl_v_paste(self, browser):
@@ -263,7 +286,8 @@ class TestQuickAccessPage:
         page.do_click(QuickAccessPageLocators.BTN_QA_ENTER)
         page.assert_any_element_is_present(LoginPageLocators.MODAL_WHATS_NEW)
 
-    # "Quick Access" input allowed different symbols length:
+    @allure.title('[Extended]Input allowed (<=255) symbols length into "Name field')
+    @allure.severity(allure.severity_level.MINOR)
     @pytest.mark.extended
     @pytest.mark.positive
     @pytest.mark.parametrize('input_text', [
@@ -279,8 +303,8 @@ class TestQuickAccessPage:
         page.do_click(QuickAccessPageLocators.BTN_QA_ENTER)
         page.assert_any_element_is_present(LoginPageLocators.MODAL_WHATS_NEW)
 
-    # "Quick Access" input not allowed symbols length (>255) and assert error message:
-    @pytest.mark.draft
+    @allure.title('[Extended]Input not allowed (>255) symbols length into "Name field')
+    @allure.severity(allure.severity_level.MINOR)
     @pytest.mark.extended
     @pytest.mark.negative
     def test_quick_access_input_not_allowed_length(self, browser):
@@ -293,15 +317,88 @@ class TestQuickAccessPage:
         page.assert_element_text_is_correct(LoginPageLocators.ERR_MESSAGE_EMAIL,
                                             LoginPage.login_yaml_parser('exp_qa_err_255_symbols'))
 
-    # "This field is required" message check for Name
-    @pytest.mark.extended
-    @pytest.mark.negative
-    def test_name_input_clear_message_check(self, browser):
+
+@allure.suite('Logging')
+@allure.sub_suite('"Feedback Survey" modal window test suite')
+@pytest.mark.quick_access_suite
+class TestFeedbackModal:
+
+    @allure.title('[Smoke]Window elements check')
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.smoke
+    @pytest.mark.positive
+    def test_feedback_open_assert_all_elements(self, browser):
         page = LoginPage(browser)
         page.go_to_url(link_app)
-        page.do_click(LoginPageLocators.BTN_QUICK_ACCESS)
-        page.do_input_keys_with_keyboard(QuickAccessPageLocators.INPUT_QA_NAME,
-                                         LoginPage.login_yaml_parser('user_1_name_cred'))
-        page.do_clear_input_with_backspace(QuickAccessPageLocators.INPUT_QA_NAME)
-        page.assert_element_text_is_correct(LoginPageLocators.ERR_MESSAGE_EMAIL,
-                                            LoginPage.login_yaml_parser('exp_err_email_required_text'))
+        page.do_click(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.assert_element_text_is_correct(FeedbackModalPageLocators.TEXT_FB_TITLE,
+                                            LoginPage.login_yaml_parser('exp_fb_title'))
+        page.assert_element_text_is_correct(FeedbackModalPageLocators.TEXT_FB_SCALE,
+                                            LoginPage.login_yaml_parser('exp_fb_scale_title'))
+        page.assert_element_text_is_correct(FeedbackModalPageLocators.TEXT_FB_FEEDBACK,
+                                            LoginPage.login_yaml_parser('exp_fb_input_title'))
+        page.assert_btn_is_present_and_enabled(FeedbackModalPageLocators.BTN_FB_CLOSE_CROSS)
+        page.assert_btn_is_present_and_enabled(FeedbackModalPageLocators.BTN_FB_NOT_NOW)
+        page.assert_btn_is_present_and_disabled(FeedbackModalPageLocators.BTN_FB_SEND)
+        for i in range(1, 11):
+            page.assert_btn_is_present_and_enabled(FeedbackModalPageLocators.BTN_SCALE_DICT[f"BTN_FB_RADIO_SCALE_{i}"])
+        page.assert_input_is_present_receive_text_with_placeholder(FeedbackModalPageLocators.INPUT_FB_FEEDBACK,
+                                                                   LoginPage
+                                                                   .login_yaml_parser('exp_fb_feedback_placeholder'))
+
+    @allure.title('[Smoke]Feedback submit')
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.draft
+    @pytest.mark.smoke
+    @pytest.mark.positive
+    def test_feedback_feedback_submit(self, browser):
+        page = LoginPage(browser)
+        page.go_to_url(link_app)
+        page.do_click(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.do_click(FeedbackModalPageLocators.BTN_SCALE_DICT["BTN_FB_RADIO_SCALE_1"])
+        page.assert_btn_is_present_and_enabled(FeedbackModalPageLocators.BTN_FB_SEND)
+        page.do_input_keys_with_keyboard(FeedbackModalPageLocators.INPUT_FB_FEEDBACK,
+                                         LoginPage.login_yaml_parser('text_254'))
+        page.do_click(FeedbackModalPageLocators.BTN_FB_SEND)
+        page.assert_db_received_data(link_agl_db_feedback,
+                                     LoginPage.login_yaml_parser('query_fb_latest_feedback_text'),
+                                     LoginPage.login_yaml_parser('text_254'))
+        page.assert_db_received_data(link_agl_db_feedback,
+                                     LoginPage.login_yaml_parser('query_fb_latest_feedback_scale'),
+                                     '1')
+
+    @allure.title('[Smoke]"Not now" button check')
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.smoke
+    @pytest.mark.positive
+    def test_feedback_cancel(self, browser):
+        pass
+
+    @allure.title('[Critical path]Scale check with submit')
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.critical_path
+    @pytest.mark.positive
+    # @pytest.mark.parametrize()
+    def test_feedback_scale_check(self, browser):
+        pass
+
+    @allure.title('[Critical path]Quite by clicking outside of the modal window')
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.critical_path
+    @pytest.mark.positive
+    def test_feedback_click_outside_window_quit(self, browser):
+        pass
+
+    @allure.title('[Critical path]Feedback without Scale check')
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.critical_path
+    @pytest.mark.negative
+    def test_feedback_input_without_scale(self, browser):
+        pass
+
+    @allure.title('[Extended]Feedback input with CTRL + V')
+    @allure.severity(allure.severity_level.MINOR)
+    @pytest.mark.extended
+    @pytest.mark.positive
+    def test_feedback_input_without_scale(self, browser):
+        pass

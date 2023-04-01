@@ -28,12 +28,20 @@ exp_qa_quick_access_text: 'Quick access'
 exp_qa_notice_text: 'Notice: temporary account lifetime 72 hours'
 exp_qa_err_255_symbols: '255 symbols maximum'
 
+# Expected text on the page (Feedback Survey)
+exp_fb_title: 'AGILES APP FEEDBACK SURVEY'
+exp_fb_scale_title: 'How likely are you to recommend the app to your colleagues?'
+exp_fb_input_title: 'Please help us become better. How can we improve the app?'
+
 # Expected placeholder text in input fields (Login)
 exp_email_placeholder: 'Enter Your Email'
 exp_password_placeholder: 'Enter Your Password'
 
 # Expected placeholder text in input fields (Quick Access)
 exp_qa_name_placeholder: 'Enter Your Name'
+
+# Expected placeholder text in input fields (Quick Access)
+exp_fb_feedback_placeholder: ''
 
 # Email negative input data
 email_input_neg_data:
@@ -47,3 +55,10 @@ email_input_neg_data:
 text_254: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by the'
 text_255: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by thei'
 text_256_neg: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their'
+
+# SQL Queries
+query_user_last_reg_user_email: 'SELECT email FROM user_ms.user_table ORDER BY user_id DESC LIMIT 1'
+query_user_last_reg_user_is_activated: 'SELECT is_activated FROM user_ms.user_table ORDER BY user_id DESC LIMIT 1'
+
+query_fb_latest_feedback_scale: 'SELECT value FROM agl_feedback.response_answer WHERE question_id=1 ORDER BY id DESC LIMIT 1;'
+query_fb_latest_feedback_text: 'SELECT value FROM agl_feedback.response_answer WHERE question_id=2 ORDER BY id DESC LIMIT 1;'

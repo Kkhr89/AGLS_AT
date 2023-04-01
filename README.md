@@ -1,6 +1,6 @@
 # Pet project for Automation testing of AgileS
-## Stack: Pytest + Selenium + Allure
-## Database: PostgeSQL
+## Stack: Python(Pytest) + Selenium + Allure
+## Database: PostgreSQL(SQLAlchemy)
 ### Done:
 
  - **users_creator**: Automatic users creation by parsing users.xlsx file with user data
