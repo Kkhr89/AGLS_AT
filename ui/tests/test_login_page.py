@@ -68,7 +68,6 @@ class TestLoginPageMain:
         page.do_click(LoginPageLocators.BTN_SIGN_IN)
         page.assert_any_element_is_present(LoginPageLocators.MODAL_WHATS_NEW)
 
-
     @allure.title('[Critical Path]Wrong email error pop-up check')
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.critical_path
@@ -348,7 +347,6 @@ class TestFeedbackModal:
 
     @allure.title('[Smoke]Feedback submit')
     @allure.severity(allure.severity_level.CRITICAL)
-    @pytest.mark.draft
     @pytest.mark.smoke
     @pytest.mark.positive
     def test_feedback_feedback_submit(self, browser):
@@ -372,33 +370,46 @@ class TestFeedbackModal:
     @pytest.mark.smoke
     @pytest.mark.positive
     def test_feedback_cancel(self, browser):
-        pass
+        page = LoginPage(browser)
+        page.go_to_url(link_app)
+        page.do_click(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.do_click(FeedbackModalPageLocators.BTN_FB_NOT_NOW)
+        page.assert_btn_is_present_and_enabled(LoginPageLocators.BTN_QUICK_ACCESS)
 
     @allure.title('[Critical path]Scale check with submit')
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.critical_path
     @pytest.mark.positive
-    # @pytest.mark.parametrize()
-    def test_feedback_scale_check(self, browser):
-        pass
+    @pytest.mark.parametrize('scale_id', range(1, 11))
+    def test_feedback_scale_check(self, browser, scale_id):
+        page = LoginPage(browser)
+        page.go_to_url(link_app)
+        page.do_click(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.do_click(FeedbackModalPageLocators.BTN_SCALE_DICT[f"BTN_FB_RADIO_SCALE_{scale_id}"])
+        page.do_click(FeedbackModalPageLocators.BTN_FB_SEND)
+        page.assert_db_received_data(link_agl_db_feedback,
+                                     LoginPage.login_yaml_parser('query_fb_latest_feedback_scale'),
+                                     f'{scale_id}')
 
     @allure.title('[Critical path]Quite by clicking outside of the modal window')
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.critical_path
     @pytest.mark.positive
     def test_feedback_click_outside_window_quit(self, browser):
-        pass
+        page = LoginPage(browser)
+        page.go_to_url(link_app)
+        page.do_click(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.do_click_outside_modal_wdw(FeedbackModalPageLocators.WDW_MODAL)
+        page.assert_btn_is_present_and_enabled(LoginPageLocators.BTN_QUICK_ACCESS)
 
     @allure.title('[Critical path]Feedback without Scale check')
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.critical_path
     @pytest.mark.negative
     def test_feedback_input_without_scale(self, browser):
-        pass
-
-    @allure.title('[Extended]Feedback input with CTRL + V')
-    @allure.severity(allure.severity_level.MINOR)
-    @pytest.mark.extended
-    @pytest.mark.positive
-    def test_feedback_input_without_scale(self, browser):
-        pass
+        page = LoginPage(browser)
+        page.go_to_url(link_app)
+        page.do_click(LoginPageLocators.BTN_FEEDBACK_SURVEY)
+        page.do_paste_keys_with_ctrl_v(FeedbackModalPageLocators.INPUT_FB_FEEDBACK,
+                                       LoginPage.login_yaml_parser('text_254'))
+        page.assert_btn_is_present_and_disabled(FeedbackModalPageLocators.BTN_FB_SEND)

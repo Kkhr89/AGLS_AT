@@ -42,3 +42,4 @@ class FeedbackModalPageLocators:
     TEXT_FB_SCALE = (By.CSS_SELECTOR, 'div[data-testid="feedback-rating-scale-title"]')
     TEXT_FB_FEEDBACK = (By.CSS_SELECTOR, 'div[data-testid="feedback-comment-title"]')
     INPUT_FB_FEEDBACK = (By.CSS_SELECTOR, 'textarea[data-testid="feedback-comment-field"]')
+    WDW_MODAL = (By.CSS_SELECTOR, 'div.ant-modal-content')

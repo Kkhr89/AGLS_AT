@@ -1,14 +1,13 @@
-"""Base class for all pages"""
+"""Base Class for all pages, contains all common methods"""
 
 import pyperclip
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from ui.utilities.support import *
-
-"""Base Class for all pages, contains all common methods"""
 
 
 class BasePage:
@@ -30,13 +29,19 @@ class BasePage:
         """
         self.wait.until(EC.visibility_of_element_located(locator)).click()
 
+    @allure.step('Click outside of modal window')
+    def do_click_outside_modal_wdw(self, locator: WebElement):
+        modal_wdw = self.wait.until(EC.visibility_of_element_located(locator))
+        actions = ActionChains(self.browser)
+        actions.move_to_element_with_offset(modal_wdw, -100, -100).click().perform()
+
     @allure.step('Fill in text into input field by typing it from the keyboard')
-    def do_input_keys_with_keyboard(self, locator: WebElement, text: str):
-        self.wait.until(EC.visibility_of_element_located(locator)).send_keys(text)
+    def do_input_keys_with_keyboard(self, locator: WebElement, text_data: str):
+        self.wait.until(EC.visibility_of_element_located(locator)).send_keys(text_data)
 
     @allure.step('Copy text to clipboard and fill it into input field by pasting with CTRL+V from keyboard')
-    def do_paste_keys_with_ctrl_v(self, locator: WebElement, text: str):
-        pyperclip.copy(text)
+    def do_paste_keys_with_ctrl_v(self, locator: WebElement, text_data: str):
+        pyperclip.copy(text_data)
         self.wait.until(EC.visibility_of_element_located(locator)).send_keys(Keys.CONTROL, 'v')
 
     @allure.step('Clear the input field with keyboard BACKSPACE key')
@@ -95,4 +100,6 @@ class BasePage:
     @allure.step('Execute SQL query in database and receive response')
     def assert_db_received_data(self, host_link: str, query: str, sent_data: str):
         query_result = db_connect_execute_query_return_cell(host_link, query)
-        assert query_result == sent_data, 'Database did not received data / data received is incorrect'
+        assert query_result == sent_data, f'Database did not received data / data received is incorrect:\n' \
+                                          f'Was sent: "{sent_data}"\n' \
+                                          f'In database:"{query_result}"'
