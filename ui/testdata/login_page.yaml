@@ -33,6 +33,12 @@ exp_fb_title: 'AGILES APP FEEDBACK SURVEY'
 exp_fb_scale_title: 'How likely are you to recommend the app to your colleagues?'
 exp_fb_input_title: 'Please help us become better. How can we improve the app?'
 
+# Expected text on the page (Sign Up)
+exp_su_sign_up_text: 'Sign Up'
+exp_su_have_account_text: 'Already have an account?'
+exp_su_confirmation_message: 'Confirmation link was send!'
+new_localhost_link: '3000'
+
 # Expected placeholder text in input fields (Login)
 exp_email_placeholder: 'Enter Your Email'
 exp_password_placeholder: 'Enter Your Password'
@@ -40,8 +46,15 @@ exp_password_placeholder: 'Enter Your Password'
 # Expected placeholder text in input fields (Quick Access)
 exp_qa_name_placeholder: 'Enter Your Name'
 
-# Expected placeholder text in input fields (Quick Access)
+# Expected placeholder text in input fields (Feedback Survey)
 exp_fb_feedback_placeholder: ''
+
+# Expected placeholder text in input fields (Login)
+exp_su_first_name_placeholder: 'Enter First Name'
+exp_su_last_name_placeholder: 'Enter Last Name (Optional)'
+exp_su_email_placeholder: 'Enter Your Email'
+exp_su_password_placeholder: 'Enter Your Password'
+exp_su_conf_pass_placeholder: 'Confirm Password'
 
 # Email negative input data
 email_input_neg_data:

@@ -43,3 +43,18 @@ class FeedbackModalPageLocators:
     TEXT_FB_FEEDBACK = (By.CSS_SELECTOR, 'div[data-testid="feedback-comment-title"]')
     INPUT_FB_FEEDBACK = (By.CSS_SELECTOR, 'textarea[data-testid="feedback-comment-field"]')
     WDW_MODAL = (By.CSS_SELECTOR, 'div.ant-modal-content')
+
+
+class SignUpPageLocators:
+    BTN_SU_SIGN_UP = (By.CSS_SELECTOR, 'button[type="submit"]')
+    INPUT_SU_FIRST_NAME = (By.CSS_SELECTOR, 'input[placeholder="Enter First Name"]')
+    INPUT_SU_LAST_NAME = (By.CSS_SELECTOR, 'input[placeholder="Enter Last Name (Optional)"]')
+    INPUT_SU_EMAIL = (By.CSS_SELECTOR, 'input[placeholder="Enter Your Email"]')
+    INPUT_SU_PASSWORD = (By.CSS_SELECTOR, 'input[placeholder="Enter Your Password"]')
+    INPUT_SU_CONFIRM_PASSWORD = (By.CSS_SELECTOR, 'input[placeholder="Confirm Password"]')
+    TEXT_SU_SIGN_UP = (By.CSS_SELECTOR, 'h4.Subtitle__secondaryTitle')
+    TEXT_HAVE_ACCOUNT = (By.CSS_SELECTOR, 'div.TextLink__container > span')
+    LINK_SU_SIGN_IN = (By.CSS_SELECTOR, 'a.TextLink__link')
+    MESSAGE_CONFIRMATION_LINK = (By.CSS_SELECTOR, 'div.uui-snackbar-item-wrapper-right-self>div>div>div>div>div')
+    MESSAGE_MAILHOG_MAIL = (By.CSS_SELECTOR, 'div.msglist-message')
+    LINK_MAILHOG_CONFIRMATION = (By.CSS_SELECTOR, '#preview-plain > a')

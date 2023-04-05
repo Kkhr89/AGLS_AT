@@ -57,10 +57,14 @@ def user_creator():
             .send_keys(l_name)
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Email"]'))) \
             .send_keys(email)
-        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Password"]'))) \
+
+        # wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Password"]')))\
+        #     .send_keys('Godfather1989!')
+
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Password"]')))\
             .send_keys('G')
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Password"]'))) \
-            .send_keys('odfather1')
+             .send_keys('odfather1')
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Enter Your Password"]'))) \
             .send_keys('989!')
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[placeholder="Confirm Password"]'))) \

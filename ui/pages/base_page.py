@@ -50,6 +50,21 @@ class BasePage:
         while input_field.get_attribute("value") != "":
             input_field.send_keys(Keys.BACKSPACE)
 
+    @allure.step('Create, switch to new tab and open url')
+    def do_create_new_tab(self, url: str):
+        self.browser.switch_to.new_window('tab')
+        self.browser.get(url)
+
+    @allure.step('Switch to existing tab')
+    def do_switch_to_existing_tab(self, window_id):
+        self.browser.switch_to.window(window_id)
+
+    @allure.step('Create dummy link to use on localhost')
+    def do_create_new_link(self, locator: WebElement, new_text: str):
+        initial_link = self.wait.until(EC.visibility_of_element_located(locator)).text
+        modified_link = initial_link[:17] + new_text + initial_link[21:]
+        return modified_link
+
     @allure.step('Assert the element presence')
     def assert_any_element_is_present(self, locator: WebElement):
         assert self.wait.until(EC.visibility_of_element_located(locator)).is_displayed()
@@ -89,6 +104,37 @@ class BasePage:
         actual_text = self.wait.until(EC.visibility_of_element_located(locator)).text
         assert actual_text == expected_text, f'{locator} text is "{actual_text}" instead of "{expected_text}"'
 
+    @allure.step('Assert text is changed after input(last symbols are removed)')
+    def assert_input_text_was_changed(self, locator: WebElement, expected_text: str):
+        actual_text = self.wait.until(EC.visibility_of_element_located(locator)).text
+        assert actual_text != expected_text, \
+            f'{locator} saved text is same as inputted: "{actual_text}" vs "{expected_text}"'
+
+    @allure.step('Execute SQL query in database and receive response')
+    def assert_db_received_data(self, host_link: str, query: str, sent_data: str):
+        query_result = db_connect_execute_query_return_cell(host_link, query)
+        assert query_result == sent_data, f'Database did not received data / data received is incorrect:\n' \
+                                          f'Was sent: "{sent_data}"\n' \
+                                          f'In database:"{query_result}"'
+
+    @allure.step('Check cursor is changed arrow->hand when hover on element')
+    def assert_cursor_changed_to_hand_on_hover(self, locator: WebElement):
+        initial_style = "default"
+        element = self.wait.until(EC.visibility_of_element_located(locator))
+        webdriver.ActionChains(self.browser).move_to_element(element).perform()
+        new_style = self.wait.until(EC.visibility_of_element_located(locator)).value_of_css_property("cursor")
+        assert initial_style != new_style and new_style == "pointer", \
+               f"Cursor did not change to hand on hover. Initial style: {initial_style}, new style: {new_style}"
+
+    @allure.step('Check cursor is changed arrow->text when hover on element')
+    def assert_cursor_changed_to_text_on_hover(self, locator: WebElement):
+        initial_style = "default"
+        element = self.wait.until(EC.visibility_of_element_located(locator))
+        webdriver.ActionChains(self.browser).move_to_element(element).perform()
+        new_style = self.wait.until(EC.visibility_of_element_located(locator)).value_of_css_property("cursor")
+        assert initial_style != new_style and (new_style == "text" or new_style == "auto"), \
+               f"Cursor did not change to text on hover. Initial style: {initial_style}, new style: {new_style}"
+
     @allure.step('Refresh the page')
     def do_refresh(self):
         self.browser.refresh()
@@ -97,9 +143,4 @@ class BasePage:
     def get_text(self, locator: WebElement):
         return self.wait.until(EC.visibility_of_element_located(locator)).text
 
-    @allure.step('Execute SQL query in database and receive response')
-    def assert_db_received_data(self, host_link: str, query: str, sent_data: str):
-        query_result = db_connect_execute_query_return_cell(host_link, query)
-        assert query_result == sent_data, f'Database did not received data / data received is incorrect:\n' \
-                                          f'Was sent: "{sent_data}"\n' \
-                                          f'In database:"{query_result}"'
+
