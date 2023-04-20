@@ -1,0 +1,5 @@
+INSERT INTO user_ms.user_table (user_id, first_name, last_name, email, password, granted_authorities, is_activated, is_whats_new_viewed, expiration, picture)
+VALUES 
+('ac13000c-8745-1bc1-8187-4c0a94c10000', 'First', 'Member', 'first_member@mail.com', '$2a$10$NEk/xPzL1YkTrqDcJPuJJutDWZaxumoU2iNM.UEMy0ub.5uNhas9O', '["USER"]', TRUE, TRUE, NULL, NULL),
+('ac13000c-8745-1bc1-8187-4c0ad54c0001', 'Second', 'Member', 'second_member@mail.com', '$2a$10$jFpykPjHRwjtCTvOmnz1q..wh2sKLFPeYccnktWamsiqJb6WL1hAy', '["USER"]', TRUE, TRUE, NULL, NULL),
+('ac13000c-8745-1bc1-8187-4c0b128b0002', 'Third', 'Member', 'third_member@mail.com', '$2a$10$CaqZoqFWG2tBPuqZ.LDf8eyiRNvr/4eH1jLUNuWTs5PPhXVNIfF1q', '["USER"]', TRUE, TRUE, NULL, NULL);
