@@ -13,6 +13,7 @@ and executing required steps in browser. Can create any amount of users. Passwor
  - `pytest --html=reports/full_chrome_report.html --self-contained-html`  -  generate HTML report
  - `pytest --browser chrome/edge/firefox`  -  launch on different browsers (chrome - default)
  - `pytest --reruns 2`  -  re-run failed tests (default)
+ - `-n 4` - run 4 tests in parallel
 
 ### Allure:
  - `pytest --alluredir=allure-report/`  -  generate allure report (default)

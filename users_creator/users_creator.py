@@ -1,10 +1,10 @@
 import openpyxl
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.service import Service
 
 
 # Method to create dictionary with all the users info parsed from users.xlsx
@@ -36,7 +36,7 @@ def users_count():
 def user_creator():
     user_qty = users_count()
     for i in range(1, user_qty + 1):
-        service = webdriver.chrome.service.Service(executable_path=ChromeDriverManager().install())
+        service = Service(executable_path=ChromeDriverManager().install())
         options = webdriver.ChromeOptions()
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
