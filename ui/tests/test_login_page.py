@@ -563,4 +563,3 @@ class TestSignUpPage:
         page.do_switch_to_existing_tab(initial_window)
         page.go_to_url(new_url)
         page.assert_any_element_is_present(FeedbackModalPageLocators.WDW_MODAL)
-
