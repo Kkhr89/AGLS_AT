@@ -58,3 +58,17 @@ class SignUpPageLocators:
     MESSAGE_CONFIRMATION_LINK = (By.CSS_SELECTOR, 'div.uui-snackbar-item-wrapper-right-self>div>div>div>div>div')
     MESSAGE_MAILHOG_MAIL = (By.CSS_SELECTOR, 'div.msglist-message')
     LINK_MAILHOG_CONFIRMATION = (By.CSS_SELECTOR, '#preview-plain > a')
+
+class WhatsNewModalPageLocators:
+    MODAL_WHATS_NEW = (By.CSS_SELECTOR, 'div[style="width: 820px;"]')
+    TITLE_WHATS_NEW = (By.CSS_SELECTOR, 'div#rcDialogTitle2')
+    TITLE_LATEST_RELEASE = (By.CSS_SELECTOR, 'div[data-testid="whats-new-title-wrapper"]>:nth-child(1)')
+    TITLE_NEW_FEATURES = (By.CSS_SELECTOR, 'div[data-testid="whats-new-features-block"]>div')
+    TITLE_BUGS = (By.CSS_SELECTOR, 'div[data-testid="whats-new-fixed-bugs-title"]')
+    TEXT_RELEASE_DATE = (By.CSS_SELECTOR, 'div[data-testid="whats-new-title-wrapper"]>:nth-child(2)')
+    LIST_NEW_FEATURES = (By.CSS_SELECTOR, 'div[data-testid="whats-new-features-block"]>ul')
+    LIST_BUGS = (By.CSS_SELECTOR, 'ul[data-testid="whats-new-fixed-bugs-list"]')
+    BTN_WHATS_NEW_CLOSE_CROSS = (By.CSS_SELECTOR,
+                                 'div:nth-child(4)>div>.ant-modal-wrap>div>.ant-modal-content>button')
+    BTN_GOT_IT = (By.CSS_SELECTOR,
+                  'div:nth-child(6)>div>div.ant-modal-wrap>div>div.ant-modal-content>div.ant-modal-footer>button')

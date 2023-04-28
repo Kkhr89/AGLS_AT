@@ -1,0 +1,8 @@
+---
+# Test data for Board Management page
+
+# Expected text on the page (What's New)
+exp_wn_page_title: "What's new?"
+exp_wn_latest_release_title: "Latest release:"
+exp_wn_new_features_title: "New features:"
+exp_wn_latest_bugs_title: "Bugs:"

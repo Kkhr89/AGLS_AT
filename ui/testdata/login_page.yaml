@@ -2,13 +2,13 @@
 # Test data for Login page
 
 # User login credentials
-user_1_email_cred: 'first_member@mail.com'
+user_1_email_cred: 'first@mail.com'
 user_1_name_cred: 'First'
-user_2_email_cred: 'second_member@mail.com'
+user_2_email_cred: 'second@mail.com'
 user_2_name_cred: 'Second'
-user_3_email_cred: 'third_member@mail.com'
+user_3_email_cred: 'third@mail.com'
 user_3_name_cred: 'Third'
-user_4_email_cred: 'fourth_member@mail.com'
+user_4_email_cred: 'fourth@mail.com'
 user_4_name_cred: 'Fourth'
 user_pass_cred: 'Godfather1989!'
 neg_user_email_cred: 'last_member@mail.com'
