@@ -1,0 +1,7 @@
+{
+    "url_post_body_token_request": {
+        "email": "first@mail.com",
+        "password": "Godfather1989!",
+        "type": "USER"
+    }
+}

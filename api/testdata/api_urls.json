@@ -1,0 +1,3 @@
+{
+  "url_post_token_request": "http://localhost:8085/api/user/login"
+}

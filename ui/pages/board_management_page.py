@@ -16,7 +16,7 @@ class BoardManagementPage(BasePage):
     @staticmethod
     @allure.step('Take key-related text from testdata.yaml file')
     def board_management_yaml_parser(key: str):
-        return yaml_parser('testdata/board_management_page.yaml', key)
+        return yaml_parser('ui/testdata/board_management_page.yaml', key)
 
     @allure.step('Open Board Management page')
     def go_to_board_management(self):

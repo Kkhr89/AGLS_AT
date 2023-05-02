@@ -15,7 +15,7 @@ class LoginPage(BasePage):
     @staticmethod
     @allure.step('Take key-related text from testdata.yml file')
     def login_yaml_parser(key: str):
-        return yaml_parser('testdata/login_page.yaml', key)
+        return yaml_parser('ui/testdata/login_page.yaml', key)
 
     @allure.step('Open Quick Access page')
     def go_to_quick_access(self):
