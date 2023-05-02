@@ -1,4 +1,4 @@
-# Pet project for Automation testing of AgileS
+# Pet project for Automation testing
 ## Stack: Python(Pytest) + Selenium + Allure
 ## Database: PostgreSQL(SQLAlchemy)
 ### Done:
