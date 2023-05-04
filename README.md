@@ -1,6 +1,8 @@
-# Pet project for Automation testing
-## Stack: Python(Pytest) + Selenium + Allure
-## Database: PostgreSQL(SQLAlchemy)
+# Pet project for Automation testing in Python(Pytest)
+## - UI testing: Selenium
+## - API testing: requests
+## - Database: PostgreSQL(SQLAlchemy)
+## - Reporting: Allure
 ### Done:
 
  - **users_creator**: Automatic users creation by parsing users.xlsx file with user data
@@ -10,7 +12,7 @@ and executing required steps in browser. Can create any amount of users. Passwor
    + Sign up page
    + Login page(Standard, Quick Access)
    + Feedback modal window
- - **api**: automation testing of API - TBD
+ - **api**: automation testing of API - avatar upload/download feature testing is in progress
  - **performance**: automation performance testing - TBD
 
 ### Execution tips:
