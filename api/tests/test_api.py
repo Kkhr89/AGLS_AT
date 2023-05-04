@@ -1,11 +1,20 @@
 """ API Test suite """
 
+import pytest
 import requests
-from api.utilities.service import parse_json_file
+from api.commands.commands import *
 
 
 class TestAPI:
+
     def test_get_request(self):
-        response = requests.post(url, json)
+        url = BaseMethods.parse_from_api_urls("url_post_token_request")
+        request_body = BaseMethods.parse_from_api_jsons("post_body_token_request")
+        response = BaseMethods.get_auth_token_request(url, request_body)
+        response_json = response.json()
+        access_token = response_json['accessToken']
         assert response.status_code == 200
-        assert response.json() == {'message': 'Hello, World!'}
+        assert 'accessToken' in response_json
+
+
+        
