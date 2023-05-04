@@ -13,7 +13,7 @@ class TestAPI:
                                           '阿瓦托爾.png',
                                           'PNG_910kB.png',
                                           'PNG_1960kB.png'])
-    def test_get_request(self, filename):
+    def test_upload_avatar(self, filename):
         access_token = BaseMethods.return_auth_token()
         url_upload = BaseMethods.parse_from_api_urls("url_post_upload_and_set_avatar")
         response = BaseMethods.post_request_to_upload_file(f'testdata/avatars/{filename}',
