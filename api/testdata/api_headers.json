@@ -1,0 +1,10 @@
+{
+  "header_content_type_json":
+  {
+    "Content-Type": "application/json"
+  },
+  "header_content_type_multipart":
+  {
+    "Content-Type": "multipart/form-data"
+  }
+}

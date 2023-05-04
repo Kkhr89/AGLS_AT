@@ -1,5 +1,5 @@
 {
-    "post_body_token_request":
+    "json_body_post_token_request":
     {
         "email": "first@mail.com",
         "password": "Godfather1989!",
